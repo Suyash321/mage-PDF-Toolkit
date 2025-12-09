@@ -51,11 +51,11 @@ const DEFAULT_EXAM_SIZES = {
   },
   "RRB NTPC": {
     photo: { width: 300, height: 400, maxKB: 50 },
-    signature: { width: 200, height: 60, maxKB: 20 },
+    signature: { width: 200, height: 60, maxKB: 30 },
   },
   "RRB Group D": {
     photo: { width: 300, height: 400, maxKB: 50 },
-    signature: { width: 200, height: 60, maxKB: 20 },
+    signature: { width: 200, height: 60, maxKB: 30 },
   },
   "Railway JE": {
     photo: { width: 200, height: 230, maxKB: 50 },
@@ -78,48 +78,24 @@ const DEFAULT_EXAM_SIZES = {
     signature: { width: 140, height: 60, maxKB: 20 },
   },
   NDA: {
-    photo: { width: 300, height: 350, maxKB: 50 },
+    photo: { width: 300, height: 350, maxKB: 40 },
     signature: { width: 200, height: 80, maxKB: 20 },
   },
   CDS: {
-    photo: { width: 300, height: 350, maxKB: 50 },
+    photo: { width: 300, height: 350, maxKB: 40 },
     signature: { width: 200, height: 80, maxKB: 20 },
   },
   AFCAT: {
-    photo: { width: 300, height: 350, maxKB: 50 },
+    photo: { width: 300, height: 350, maxKB: 40 },
     signature: { width: 200, height: 80, maxKB: 20 },
   },
   "DRDO Tech": {
-    photo: { width: 300, height: 400, maxKB: 80 },
-    signature: { width: 200, height: 60, maxKB: 20 },
+    photo: { width: 300, height: 400, maxKB: 50 },
+    signature: { width: 200, height: 60, maxKB: 30 },
   },
   DRDO: {
-    photo: { width: 300, height: 400, maxKB: 80 },
-    signature: { width: 200, height: 60, maxKB: 20 },
-  },
-  ISRO: {
-    photo: { width: 300, height: 400, maxKB: 80 },
-    signature: { width: 200, height: 60, maxKB: 20 },
-  },
-  "State PSC": {
-    photo: { width: 300, height: 350, maxKB: 60 },
-    signature: { width: 200, height: 80, maxKB: 20 },
-  },
-  "LIC AAO": {
-    photo: { width: 200, height: 230, maxKB: 50 },
-    signature: { width: 140, height: 60, maxKB: 20 },
-  },
-  "EPFO EO/AO": {
-    photo: { width: 300, height: 400, maxKB: 80 },
-    signature: { width: 200, height: 60, maxKB: 20 },
-  },
-  "Delhi Police": {
-    photo: { width: 200, height: 230, maxKB: 50 },
-    signature: { width: 140, height: 60, maxKB: 20 },
-  },
-  "Army Agniveer": {
-    photo: { width: 200, height: 230, maxKB: 50 },
-    signature: { width: 140, height: 60, maxKB: 20 },
+    photo: { width: 300, height: 400, maxKB: 50 },
+    signature: { width: 200, height: 60, maxKB: 30 },
   },
 };
 

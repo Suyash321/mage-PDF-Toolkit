@@ -1,13 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Check, Zap, Shield, Users } from "lucide-react";
+import { Zap, Shield, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import ImageReduce from "../Components/ImageReduce";
-import MergePDF from "../components/MergePDF";
-import SplitPDF from "../components/SplitPDF";
-import CompressPDF from "../components/CompressPDF";
+import MergePDF from "../Components/MergePDF";
+import SplitPDF from "../Components/SplitPDF";
+import CompressPDF from "../Components/CompressPDF";
 
 const Home = () => {
-  
+  const navigate = useNavigate();
 
   const features = [
     {
@@ -36,32 +37,29 @@ const Home = () => {
       title: "Image Reducer",
       description: "Compress and resize images for exams (SSC, UPSC, GATE, JEE).",
       icon: "🖼️",
+      path: "/ImageReduce",
     },
     {
       id: "merge",
       title: "Merge PDFs",
       description: "Combine multiple PDFs into one document. Drag to reorder.",
       icon: "📎",
+      path: "/merge-pdf",
     },
     {
       id: "split",
       title: "Split PDFs",
       description: "Extract individual pages or divide documents with precision.",
       icon: "✂️",
+      path: "/split-pdf",
     },
     {
       id: "compress",
       title: "Compress PDFs",
       description: "Reduce file size significantly while maintaining quality.",
       icon: "📦",
+      path: "/compress-pdf",
     },
-  ];
-
-  const stats = [
-    { number: "1M+", label: "Files Processed" },
-    { number: "50K+", label: "Active Users" },
-    { number: "99.9%", label: "Uptime" },
-    { number: "0ms", label: "Data Storage" },
   ];
 
   return (
@@ -84,26 +82,26 @@ const Home = () => {
             className="text-center"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-block mb-6"
-            >
-              <span className="inline-flex items-center rounded-full bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-200 border border-purple-500/20">
-                ✨ Welcome to PDF Pro Suite
-              </span>
-            </motion.div>
+  initial={{ scale: 0.9, opacity: 0 }}
+  animate={{ scale: 1, opacity: 1 }}
+  transition={{ duration: 0.5 }}
+  className="inline-block mb-6"
+>
+  <span className="inline-flex items-center rounded-full bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-200 border border-purple-500/20">
+    ✨ Image & PDF Toolkit
+  </span>
+</motion.div>
 
-            <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-              Professional PDF Tools
-              <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
-                for Everyone
-              </span>
-            </h1>
+<h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+  Simplify Image & PDF Processing
+  <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+    All in One Place
+  </span>
+</h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              Process PDFs and images securely. Merge, split, compress, and resize—all in your browser. No uploads, no tracking, no compromises.
-            </p>
+<p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+  Reduce images for exams, merge PDFs, split documents, and compress files—all securely in your browser. No store, no tracking, completely free.
+</p>
 
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -179,7 +177,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ===== TOOLS SECTION ===== */}
+      {/* ===== TOOLS SECTION - UPDATED WITH CLICK NAVIGATION ===== */}
       <section id="tools" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -205,7 +203,8 @@ const Home = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-200 hover:border-purple-400 transition"
+                onClick={() => navigate(tool.path)}
+                className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-200 hover:border-purple-400 hover:shadow-lg transition cursor-pointer"
               >
                 <div className="text-4xl mb-3">{tool.icon}</div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">
@@ -215,90 +214,6 @@ const Home = () => {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ===== IMAGE REDUCER SECTION ===== */}
-      <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8 bg-slate-50">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">
-              🖼️ Image Reducer
-            </h2>
-            <p className="text-lg text-slate-600">
-              Perfect for exam photos and professional documents
-            </p>
-          </motion.div>
-          <ImageReduce />
-        </div>
-      </section>
-
-      {/* ===== MERGE PDF SECTION ===== */}
-      <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">
-              📎 Merge PDFs
-            </h2>
-            <p className="text-lg text-slate-600">
-              Combine multiple PDFs into one seamlessly
-            </p>
-          </motion.div>
-          <MergePDF />
-        </div>
-      </section>
-
-      {/* ===== SPLIT PDF SECTION ===== */}
-      <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8 bg-slate-50">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">
-              ✂️ Split PDFs
-            </h2>
-            <p className="text-lg text-slate-600">
-              Extract pages with precision
-            </p>
-          </motion.div>
-          <SplitPDF />
-        </div>
-      </section>
-
-      {/* ===== COMPRESS PDF SECTION ===== */}
-      <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">
-              📦 Compress PDFs
-            </h2>
-            <p className="text-lg text-slate-600">
-              Reduce file size dramatically
-            </p>
-          </motion.div>
-          <CompressPDF />
         </div>
       </section>
 
@@ -333,8 +248,9 @@ const Home = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="font-bold text-white mb-4">PDF Pro Suite</h3>
-              <p className="text-sm">Professional PDF tools for everyone.</p>
+              <h3 className="font-bold text-white mb-4"> Image & PDF Toolkit</h3>
+              <p className="text-sm">Simplify Image & PDF Processing
+All in One Place</p>
             </div>
             <div>
               <h4 className="font-semibold text-white mb-4">Tools</h4>
@@ -356,8 +272,8 @@ const Home = () => {
             <div>
               <h4 className="font-semibold text-white mb-4">Contact</h4>
               <ul className="text-sm space-y-2">
-                <li><a href="mailto:support@pdfprosuite.com" className="hover:text-white transition">support@pdfprosuite.com</a></li>
-                <li className="text-xs">© 2025 PDF Pro Suite</li>
+                <li><a href="mailto:support@pdfprosuite.com" className="hover:text-white transition">abhishekmoc@gmail.com</a></li>
+                <li className="text-xs">NIT Agartala, Tripura</li>
               </ul>
             </div>
           </div>

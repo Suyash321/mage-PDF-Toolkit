@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Upload, Download, Loader, AlertCircle, Check, Image as ImageIcon } from "lucide-react";
+import {
+  Upload,
+  Download,
+  Loader,
+  AlertCircle,
+  Check,
+  Image as ImageIcon,
+} from "lucide-react";
 
 const DEFAULT_EXAM_SIZES = {
   "JEE Main": {
@@ -200,10 +207,17 @@ const ImageReduce = () => {
       ctx.drawImage(bmp, 0, 0, outW, outH);
 
       const mime =
-        format === "png" ? "image/png" : format === "webp" ? "image/webp" : "image/jpeg";
-      const q = mime === "image/png" ? 1.0 : Math.max(0.01, Number(quality) / 100);
+        format === "png"
+          ? "image/png"
+          : format === "webp"
+          ? "image/webp"
+          : "image/jpeg";
+      const q =
+        mime === "image/png" ? 1.0 : Math.max(0.01, Number(quality) / 100);
 
-      const blob = await new Promise((resolve) => canvas.toBlob(resolve, mime, q));
+      const blob = await new Promise((resolve) =>
+        canvas.toBlob(resolve, mime, q)
+      );
       if (!blob) throw new Error("Failed to create image blob");
 
       const url = URL.createObjectURL(blob);
@@ -263,7 +277,8 @@ const ImageReduce = () => {
             Image Reducer
           </h1>
           <p className="text-gray-600 text-lg">
-            Compress and resize images instantly with custom or exam-wise presets
+            Compress and resize images instantly with custom or exam-wise
+            presets
           </p>
         </motion.div>
 
@@ -275,7 +290,9 @@ const ImageReduce = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="bg-white rounded-2xl shadow-lg p-8"
           >
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Upload & Configure</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+              Upload & Configure
+            </h2>
 
             <motion.div
               onDrop={handleDrop}
@@ -293,7 +310,9 @@ const ImageReduce = () => {
               <p className="text-gray-700 font-semibold mb-2">
                 {selectedFile ? selectedFile.name : "Click or drag image here"}
               </p>
-              <p className="text-gray-500 text-sm">Supported: JPG, PNG, WebP up to 50MB</p>
+              <p className="text-gray-500 text-sm">
+                Supported: JPG, PNG, WebP up to 50MB
+              </p>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -318,17 +337,11 @@ const ImageReduce = () => {
                   <option value="">
                     {examSizesLoading ? "Loading exam sizes..." : "Custom Size"}
                   </option>
-                  {Object.keys(examSizes).map((k) => {
-                    const p = examSizes[k]?.photo;
-                    const labelSuffix =
-                      p && p.width && p.height ? ` (Photo ${p.width}x${p.height})` : "";
-                    return (
-                      <option key={k} value={k}>
-                        {k}
-                        {labelSuffix}
-                      </option>
-                    );
-                  })}
+                  {Object.keys(examSizes).map((k) => (
+                    <option key={k} value={k}>
+                      {k}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -371,7 +384,9 @@ const ImageReduce = () => {
               className="mt-6 grid grid-cols-2 gap-4"
             >
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">Width (px)</label>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  Width (px)
+                </label>
                 <input
                   type="number"
                   placeholder="Width"
@@ -381,7 +396,9 @@ const ImageReduce = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">Height (px)</label>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  Height (px)
+                </label>
                 <input
                   type="number"
                   placeholder="Height"
@@ -395,7 +412,9 @@ const ImageReduce = () => {
             {/* Quality */}
             <div className="mt-6">
               <div className="flex justify-between mb-2">
-                <label className="block text-gray-700 font-semibold">Quality</label>
+                <label className="block text-gray-700 font-semibold">
+                  Quality
+                </label>
                 <span className="text-blue-600 font-bold">{quality}%</span>
               </div>
               <input
@@ -413,7 +432,9 @@ const ImageReduce = () => {
 
             {/* Format */}
             <div className="mt-6">
-              <label className="block text-gray-700 font-semibold mb-3">Output Format</label>
+              <label className="block text-gray-700 font-semibold mb-3">
+                Output Format
+              </label>
               <div className="grid grid-cols-3 gap-2">
                 {["jpeg", "png", "webp"].map((fmt) => (
                   <button
@@ -457,11 +478,12 @@ const ImageReduce = () => {
                 >
                   <Check className="w-5 h-5 text-green-600 flex-shrink-0" />
                   <p className="text-green-700 text-sm">
-                    Image processed successfully! Compressed by {compressionRatio}%{" "}
+                    Image processed successfully! Compressed by{" "}
+                    {compressionRatio}%{" "}
                     {currentCfg && currentCfg.maxKB && resizedImage
-                      ? `(Target ≤ ~${currentCfg.maxKB} KB, got ${resizedImage.sizeKB.toFixed(
-                          1
-                        )} KB)`
+                      ? `(Target ≤ ~${
+                          currentCfg.maxKB
+                        } KB, got ${resizedImage.sizeKB.toFixed(1)} KB)`
                       : ""}
                   </p>
                 </motion.div>
@@ -516,7 +538,9 @@ const ImageReduce = () => {
               >
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="text-gray-600 font-semibold mb-3 text-center">Original</p>
+                    <p className="text-gray-600 font-semibold mb-3 text-center">
+                      Original
+                    </p>
                     <div className="bg-gray-200 rounded-lg p-4 flex items-center justify-center min-h-48">
                       <img
                         src={originalImage.url}
@@ -529,7 +553,9 @@ const ImageReduce = () => {
                     </p>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="text-gray-600 font-semibold mb-3 text-center">Reduced</p>
+                    <p className="text-gray-600 font-semibold mb-3 text-center">
+                      Reduced
+                    </p>
                     <div className="bg-gray-200 rounded-lg p-4 flex items-center justify-center min-h-48">
                       <img
                         src={resizedImage.url}
@@ -547,12 +573,17 @@ const ImageReduce = () => {
                   <div className="grid grid-cols-3 gap-4">
                     <div className="text-center">
                       <p className="text-gray-600 text-sm">Reduction</p>
-                      <p className="text-2xl font-bold text-blue-600">{compressionRatio}%</p>
+                      <p className="text-2xl font-bold text-blue-600">
+                        {compressionRatio}%
+                      </p>
                     </div>
                     <div className="text-center border-l border-r border-blue-200">
                       <p className="text-gray-600 text-sm">Size Saved</p>
                       <p className="text-2xl font-bold text-green-600">
-                        {(originalImage.sizeKB - resizedImage.sizeKB).toFixed(1)} KB
+                        {(originalImage.sizeKB - resizedImage.sizeKB).toFixed(
+                          1
+                        )}{" "}
+                        KB
                       </p>
                     </div>
                     <div className="text-center">
